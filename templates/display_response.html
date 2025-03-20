@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Timeslots Schedule</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 50px;
+        }
+        .table-container {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border: 1px solid #ccc;
+        }
+        .table-wrapper {
+            display: flex;
+            gap: 20px;
+        }
+        table {
+            width: 90%;
+            margin: auto;
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid #ccc;
+            padding: 10px;
+            text-align: center;
+        }
+        th {
+            background-color: #f4f4f4;
+        }
+    </style>
+    <link href="/static/styles.css" rel="stylesheet">
+</head>
+<body>
+    <nav>
+        <a href="instructions">Instructions</a>
+        <a href="/">Upload Files</a>
+    </nav>
+
+    <h2>Weekly Timeslots Schedule</h2>
+    <div class="table-wrapper">
+    <div class="table-container">
+    <table>
+        <tr>
+            <th>Monday</th>
+            <th>Tuesday</th>
+            <th>Wednesday</th>
+            <th>Thursday</th>
+            <th>Friday</th>
+        </tr>
+        <tr>
+            {% for i in range(5) %}
+                <td id="slot-0-{{ i }}">
+                    <span style="color: blue">Short Slot</span>
+                    {% for timeslot in timeslots %}
+                        {% if timeslot.weekday == i and timeslot.length == 0 %}
+                            <br></br>
+                            {% if timeslot.stage %}
+                            <p style="color: red">stage</p>
+                            {% endif %}
+                            <p>{{ timeslot.song }}</p>
+                        {% endif %}
+                    {% endfor %}
+                </td>
+            {% endfor %}
+        </tr>
+        <tr>
+            {% for i in range(5) %}
+                <td id="slot-1-{{ i }}">
+                    <span style="color: blue">Medium Slot</span>
+                    {% for timeslot in timeslots %}
+                        {% if timeslot.weekday == i and timeslot.length == 1 %}
+                            <br></br>
+                            {% if timeslot.stage %}
+                            <p style="color: red">stage</p>
+                            {% endif %}
+                            <p>{{ timeslot.song }}</p>
+                        {% endif %}
+                    {% endfor %}
+                </td>
+            {% endfor %}
+        </tr>
+        <tr>
+            {% for i in range(5) %}
+                <td id="slot-2-{{ i }}">
+                    <span style="color: blue">Long Slot</span>
+                    {% for timeslot in timeslots %}
+                        {% if timeslot.weekday == i and timeslot.length == 2 %}
+                            <br></br>
+                            {% if timeslot.stage %}
+                            <p style="color: red">stage</p>
+                            {% endif %}
+                            <p>{{ timeslot.song }}</p>
+                        {% endif %}
+                    {% endfor %}
+                </td>
+            {% endfor %}
+        </tr>
+    </table>
+    </div>
+    <div class="table-container">
+    <table>
+        <tr>
+            <th>Student Name</th>
+            <th>Total Rehearsals</th>
+        </tr>
+        {% for list in student_list %}
+            <tr>
+                <td>{{ list[0] }}</td>
+                <td>{{ list[1] }}</td>
+            </tr>
+        {% endfor %}
+    </table>
+    </div>
+    </div>
+</body>
+</html>

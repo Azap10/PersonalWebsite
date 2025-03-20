@@ -5,5 +5,20 @@
 {% endblock %}
 
 {% block main %}
-    <h>This is Adam's Website</h>
+    <!-- <h class="helvetica">This is Adam's Website</h> -->
+
+    <div class="navbar helvetica">
+        <a href="/projects" onmouseover="projectsColor()">Projects</a>
+        <a href="/resume">Resume</a>
+        <a href="https://www.linkedin.com/in/adamzapatka">LinkedIn</a>
+        <a href="/blog">Blog</a>
+    </div>
+
+    <div onmouseover="projectsColor()" style="background-color:red;align-self:center;width:100px;height:100px"></div>
+
+    <!-- Elements with the class "test" -->
+    <p class="test">This is a test paragraph.</p>
+    <p class="test">Another test paragraph.</p>
+
+    <script src="script.js"></script>
 {% endblock %}

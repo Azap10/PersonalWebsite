@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Excel File Upload</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 50px;
+        }
+        #upload-form {
+            border: 1px solid #ccc;
+            padding: 20px;
+            display: inline-block;
+            background: #f9f9f9;
+            border-radius: 8px;
+        }
+        nav {
+            background-color: #333;
+            padding: 10px;
+            text-align: center;
+        }
+        nav a {
+            color: white;
+            margin: 0 15px;
+            text-decoration: none;
+            font-size: 18px;
+        }
+    </style>
+    <link href="/static/styles.css" rel="stylesheet">
+</head>
+<body>
+    <nav>
+        <a href="instructions">Instructions</a>
+        <a href="">Upload Files</a>
+    </nav>
+
+    <h2>Upload Your Excel Files</h2>
+    <form action="{{ url_for('view') }}" method="post" enctype="multipart/form-data">
+        <label for="songsFile">Song and Acting Information:</label>
+        <input type="file" name="songsFile"
+            accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel">
+        <br></br>
+        <label for="timeslotsFile">Schedule Information:</label>
+        <input type="file" name="timeslotsFile"
+            accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel">
+        <br></br>
+        <label for="maxDays">Max days per week rehearsing for a given student</label>
+        <input type="number" name="maxDays">
+        <br></br>
+        <label for="rehearsalsPerDay">Max rehearsals per day for a given student</label>
+        <input type="number" name="rehearsalsPerDay">
+        <br></br>
+        <input type="submit" value="Upload">
+    </form>
+    
+    <script>
+        document.getElementById('upload-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+            let fileSongActing = document.getElementById('fileSongActing');
+            let fileSchedule = document.getElementById('fileSchedule');
+            
+            if (fileSongActing.files.length === 0 || fileSchedule.files.length === 0) {
+                alert('Please select both files first!');
+                return;
+            }
+            
+            alert('Files "' + fileSongActing.files[0].name + '" and "' + fileSchedule.files[0].name + '" uploaded successfully!');
+        });
+    </script>
+</body>
+</html>
