@@ -33,15 +33,15 @@
 <script>
     document.getElementById('upload-form').addEventListener('submit', function(event) {
         event.preventDefault();
-        let fileSongActing = document.getElementById('fileSongActing');
-        let fileSchedule = document.getElementById('fileSchedule');
+        let songsFile = document.getElementById('songsFile');
+        let timeslotsFile = document.getElementById('timeslotsFile');
         
-        if (fileSongActing.files.length === 0 || fileSchedule.files.length === 0) {
+        if (songsFile.files.length === 0 || timeslotsFile.files.length === 0) {
             alert('Please select both files first!');
             return;
         }
         
-        alert('Files "' + fileSongActing.files[0].name + '" and "' + fileSchedule.files[0].name + '" uploaded successfully!');
+        alert('Files "' + songsFile.files[0].name + '" and "' + timeslotsFile.files[0].name + '" uploaded successfully!');
     });
 </script>
 {% endblock %}
